@@ -1,6 +1,6 @@
 // middle-were: [  index  ]--<#>[  router-controlls  ]--<#>[  endpoints  ]--<#>[> order <]
 
-
+/* 
 
 export interface Order {
 }
@@ -11,4 +11,4 @@ export const schema = new Schema<Order>({
   price: { type: Number, required: true },
   timestamp: { type: Number, required: true },
   delivery: delivery,
-})
+}) */

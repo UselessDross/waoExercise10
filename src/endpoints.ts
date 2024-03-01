@@ -1,12 +1,12 @@
 // middle-were: [  index  ]--<#>[  router-controlls  ]--<#>[> endpoints <]--<#>[  order  ]
 import { Request, Response } from "express";
-import { schema }            from "./model/order";
+/* import { schema }            from "./model/order"; */
 import sendMessage           from "./RabbitMQ/send";
 import reciveMessage         from "./RabbitMQ/receive";
 const mongoose = require('mongoose');
 
 const connection   = mongoose.createConnection('mongodb://mongodb:27017/')
-export const model = connection.model('Orders', schema)
+/* export const model = connection.model('Orders', schema) */
 
 
 
