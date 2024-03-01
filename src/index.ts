@@ -1,17 +1,12 @@
 // begining     [> index <]--<#>[  router-controlls  ]--<#>[  endpoints  ]--<#>[  order  ]
-//                   |                                           <^>
-//                   +-------------<#>[  seed  ]------------------+
 
-const express  = require('express')
-import { router } from "./router-controlls";
-const app = express()
-import { seed } from './seed';
 
+const express = require('express');
+const { router } = require("./router-controlls");
+
+
+const app  = express();
 const port = process.env.PORT || 8080;
-app.use('/orders', router)
-app.get('/seed', seed)
+app.use('/orders', router);
 
-app.listen(port, () => {
-    console.log(`Listening on port ${port}`)
-  })
-  
+app.listen(port, () => { console.log(`Listening on port ${port}`) });
