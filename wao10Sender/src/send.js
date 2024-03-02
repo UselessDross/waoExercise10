@@ -2,22 +2,22 @@
 
 var amqp = require('amqplib/callback_api');
 
-amqp.connect('amqp://localhost', function(error0, connection) {
-    if (error0) {
-        throw error0;
-    }
+
+
+var _channel;
+var _queue = 'hello';
+
+export  async function sendMessage(msg){
+    amqp.connect('amqp://localhost', function(error0, connection) {
+    if (error0) { throw error0; }
     connection.createChannel(function(error1, channel) {
-        if (error1) {
-            throw error1;
-        }
+        if (error1) { throw error1; }
 
-        var queue = 'hello';
-        var msg = 'Hello World!';
+        
 
-        channel.assertQueue(queue, {
-            durable: false
-        });
-        channel.sendToQueue(queue, Buffer.from(msg));
+        _channel = channel;
+         channel.assertQueue(_queue, { durable: false });
+         channel.sendToQueue(_queue, Buffer.from(msg));
 
         console.log(" [x] Sent %s", msg);
     });
@@ -26,3 +26,4 @@ amqp.connect('amqp://localhost', function(error0, connection) {
         process.exit(0);
     }, 500);
 });
+}
