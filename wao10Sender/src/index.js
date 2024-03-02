@@ -15,9 +15,6 @@ async function connectQueue() {
                                                   await channel.assertQueue("test-queue")
                                      } catch (error) { console.log(error) }
                               }
-
-
-
 app.get("/send-msg", (req, res) => {
                                    const data = {
                                                  title: "Six of Crows",
