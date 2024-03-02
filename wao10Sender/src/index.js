@@ -1,10 +1,12 @@
-const express = require("express");
+import express from "express";
 const app = express();
 const PORT = process.env.PORT || 4001;
 
 app.use(express.json());
 
-const amqp = require("amqplib");
+import { sendData } from "./send.js";
+
+import  amqp from "amqplib";
 var channel, connection;
 
 
@@ -23,14 +25,7 @@ async function connectQueue() {
     }
 }
 
-const sendData = async (data) => {
-    // send data to queue
-    await channel.sendToQueue("test-queue", Buffer.from(JSON.stringify(data)));
-        
-    // close the channel and connection
-    await channel.close();
-    await connection.close();
-}
+
 
 app.get("/send-msg", (req, res) => {
     const data = {
@@ -38,7 +33,7 @@ app.get("/send-msg", (req, res) => {
         author: "Leigh Burdugo"
     }
 
-    sendData(data);
+    sendData(data,channel,connection);
 
     console.log("A message is sent to queue")
     res.send("Message Sent");

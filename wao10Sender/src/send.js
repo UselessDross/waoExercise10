@@ -1,29 +1,33 @@
-#!/usr/bin/env node
+import express from "express";
 
-var amqp = require('amqplib/callback_api');
+const app = express();
+const PORT = process.env.PORT || 4001;
+
+app.use(express.json());
 
 
 
-var _channel;
-var _queue = 'hello';
+/* connectQueue() // call connectQueue function
+async function connectQueue() {
+    try {
 
-export  async function sendMessage(msg){
-    amqp.connect('amqp://localhost', function(error0, connection) {
-    if (error0) { throw error0; }
-    connection.createChannel(function(error1, channel) {
-        if (error1) { throw error1; }
-
+        connection = await amqp.connect("amqp://localhost:5672");
+        channel = await connection.createChannel()
         
+        // connect to 'test-queue', create one if doesnot exist already
+        await channel.assertQueue("test-queue")
+        
+    } catch (error) {
+        console.log(error)
+    }
+} */
 
-        _channel = channel;
-         channel.assertQueue(_queue, { durable: false });
-         channel.sendToQueue(_queue, Buffer.from(msg));
-
-        console.log(" [x] Sent %s", msg);
-    });
-    setTimeout(function() {
-        connection.close();
-        process.exit(0);
-    }, 500);
-});
+export const sendData = async (data, channel, connection) => {
+    // send data to queue
+    await channel.sendToQueue("test-queue", Buffer.from(JSON.stringify(data)));
+        
+    // close the channel and connection
+    await channel.close();
+    await connection.close();
 }
+
