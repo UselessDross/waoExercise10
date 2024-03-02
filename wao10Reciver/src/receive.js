@@ -1,18 +1,28 @@
-const amqplib = require("amqplib");
-const defaultConnectionString = "amqp://localhost";
+#!/usr/bin/env node
 
+var amqp = require('amqplib/callback_api');
 
-const queueName = "test_queue"; // create a function to initiate the connection
-const createConnection = async () => { return amqplib.connect(defaultConnectionString); }; // Function to start receiving messages
-const receiveMessages  = async () => { 
-                                      const connection = await createConnection();         // making a connection to the queue
-                                      const channel    = await connection.createChannel(); // creating a channel to communicate
-                                      await channel.assertQueue(queueName);                // queue validity
-                                      channel.consume(queueName, (msg)=>{ 
-                                                                         const receivedMsg = msg.content.toString();
-                                                                         console.log({receivedMsg})
-                                                                        }
-                                                      );
-                                      };
+amqp.connect('amqp://localhost', function(error0, connection) {
+    if (error0) {
+        throw error0;
+    }
+    connection.createChannel(function(error1, channel) {
+        if (error1) {
+            throw error1;
+        }
 
-export default receiveMessages();
+        var queue = 'hello';
+
+        channel.assertQueue(queue, {
+            durable: false
+        });
+
+        console.log(" [*] Waiting for messages in %s. To exit press CTRL+C", queue);
+
+        channel.consume(queue, function(msg) {
+            console.log(" [x] Received %s", msg.content.toString());
+        }, {
+            noAck: true
+        });
+    });
+});

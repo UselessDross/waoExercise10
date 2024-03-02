@@ -1,31 +1,28 @@
 #!/usr/bin/env node
 
-import { connect } from 'http2';
-
 var amqp = require('amqplib/callback_api');
 
+amqp.connect('amqp://localhost', function(error0, connection) {
+    if (error0) {
+        throw error0;
+    }
+    connection.createChannel(function(error1, channel) {
+        if (error1) {
+            throw error1;
+        }
 
+        var queue = 'hello';
+        var msg = 'Hello World!';
 
+        channel.assertQueue(queue, {
+            durable: false
+        });
+        channel.sendToQueue(queue, Buffer.from(msg));
 
-const amqplib = require('amqplib');
-const defaultConnectionString = "amqp://localhost";
-const queueName = "test";// create a function to initiate the connection
-
-
-const createConnection = async()=>{
-    return amqplib.connect(defaultConnectionString)
-};
-
-
-
-const sendMessage = async (/** @type {WithImplicitCoercion<ArrayBuffer | SharedArrayBuffer>} */ msg ) => {
-    const connection = await createConnection();             // making a connection to the queue
-    const channel    = await connection.createChannel();     // create the chaneel
-                       await channel.assertQueue(queueName); //validates the queue
-    channel.sendToQueue(queueName, Buffer.from(msg));        // sending the data as a buffer
-
-};
-
-
-
-export default sendMessage();
+        console.log(" [x] Sent %s", msg);
+    });
+    setTimeout(function() {
+        connection.close();
+        process.exit(0);
+    }, 500);
+});
