@@ -41,4 +41,4 @@ export {
         endpointPost,
         endpointGetID,
         endpointlist,
-        }
+        } //
