@@ -3,15 +3,17 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "instDepent": "npm install express && npm install && npm install typescript && npm install --save-dev @tsconfig/node20 && npm install --save-dev @types/node && npm install tsx --save-dev && npm install eslint @typescript-eslint/parser @typescript-eslint/eslint-plugin --save-dev",
+    "tsc": "tsc",
+    "start": "nodemon dist/index.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "amqplib": "^0.10.3"
+    "amqplib": "^0.10.3",
+    "mongoose": "^8.2.0"
   },
   "devDependencies": {
     "@types/amqplib": "^0.10.5"

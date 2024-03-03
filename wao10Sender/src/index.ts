@@ -1,9 +1,9 @@
-// begining     [> index <]--<#>[  router-controlls  ]--<#>[  endpoints  ]--<#>[  order  ]
+// middle-were: [> index <]--<#>[  router-controlls  ]--<#>[  endpoints  ]--<#>[  send  ]
+//                                                                L---------<#>[  dataModel  ]
 
 
-import client, { Connection, Channel, ConsumeMessage } from "amqplib";
-import { router }   from "./router-controlls.js";
-import { sendData } from "./send.js";
+import { Connection, Channel } from "amqplib";
+import { router }   from "./router-controlls";
 import express      from "express";
 import amqp         from "amqplib";
 

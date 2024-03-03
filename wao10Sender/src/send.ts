@@ -1,4 +1,8 @@
-import client, { Connection, Channel, ConsumeMessage } from "amqplib";
+// middle-were: [  index  ]--<#>[  router-controlls  ]--<#>[  endpoints  ]--<#>[> send <]
+//                                                                L---------<#>[  dataModel  ]
+
+
+import { Connection, Channel } from "amqplib";
 import express from "express";
 
 const app = express();

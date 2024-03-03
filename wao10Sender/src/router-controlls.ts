@@ -1,7 +1,9 @@
-// middle-were: [  index  ]--<#>[> router-controlls <]--<#>[  endpoints  ]--<#>[  order  ]
+// middle-were: [  index  ]--<#>[> router-controlls <]--<#>[  endpoints  ]--<#>[  send  ]
+//                                                                L---------<#>[  dataModel  ]
+
 
 import { Router, json } from 'express';
-import * as order       from './endpoints.js'
+import * as order       from './endpoints'
 const router = Router()
 
 
