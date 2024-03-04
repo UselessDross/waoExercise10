@@ -3,7 +3,7 @@
 
 
 import { Connection, Channel} from "amqplib";
-import { consumeMessage }     from "./receive.js";
+import { consumeMessage }     from "./receive";
 import express                from "express";
 import amqp                   from "amqplib";
 const PORT = process.env.PORT || 4002;

@@ -3,9 +3,10 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "instDepent": "npm install express && npm install && npm install typescript && npm install --save-dev @tsconfig/node20 && npm install --save-dev @types/node && npm install tsx --save-dev && npm install eslint @typescript-eslint/parser @typescript-eslint/eslint-plugin --save-dev",
+    "tsc": "tsc",
+    "start": "nodemon"
   },
   "keywords": [],
   "author": "",

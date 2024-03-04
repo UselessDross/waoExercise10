@@ -11,5 +11,5 @@ export const schema = new Schema<dataModel>({
                                          name:      { type: String, required: true },
                                          age:       { type: Number, required: true },
                                          level:     { type: Number, required: true },
-                                         timestamp: { type: Number, required: true },
+                                         timestamp: { type: Number, required: false },
                                          })

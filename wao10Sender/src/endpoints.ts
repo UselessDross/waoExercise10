@@ -7,7 +7,7 @@ import { schema }                              from "./model/dataModel";
 import { sendData }                            from "./send";
 import amqp                                    from "amqplib";
        const mongoose      = require('mongoose');
-       const connection2   = mongoose.createConnection('mongodb://mongodb:27017/')
+       const connection2   = mongoose.createConnection('mongodb://localhost:27017/')
 export const model         = connection2.model('dataModel', schema)
 
 var channel: Channel, connection: Connection;
