@@ -6,13 +6,16 @@
   "scripts": {
     "instDepent": "npm install express && npm install && npm install typescript && npm install --save-dev @tsconfig/node20 && npm install --save-dev @types/node && npm install tsx --save-dev && npm install eslint @typescript-eslint/parser @typescript-eslint/eslint-plugin --save-dev",
     "tsc": "tsc",
-    "start": "nodemon"
+    "start": "node dist/index.js",
+    "dev": "nodemon src/index.ts",
+    "build": "tsc"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "amqplib": "^0.10.3"
+    "amqplib": "^0.10.3",
+    "dotenv": "^16.4.5"
   },
   "devDependencies": {
     "@types/amqplib": "^0.10.5"

@@ -8,7 +8,7 @@ import { sendData }                            from "./send";
 import amqp                                    from "amqplib";
        const mongoose      = require('mongoose');
        const connection2   = mongoose.createConnection('mongodb://localhost:27017/')
-export const model         = connection2.model('dataModel', schema)
+export const model         = connection2.model('wao10', schema)
 
 var channel: Channel, connection: Connection;
 
@@ -33,12 +33,8 @@ const endpointPost = async (req: Request, res: Response) =>{
                                                             console.log("A message is sent to queue")
                                                             res.send("Message Sent"); 
                                                             };
-const endpointGetID = async (req: Request, res: Response) =>{
-                                                            const { uid } = req.params; 
-                                                            res.json(await model.findById(uid).lean())
-                                                            };
+
 export {
         endpointPost,
-        endpointGetID,
         endpointlist,
         }

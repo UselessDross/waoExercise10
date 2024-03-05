@@ -5,13 +5,13 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.endpointlist = exports.endpointGetID = exports.endpointPost = exports.model = void 0;
+exports.endpointlist = exports.endpointPost = exports.model = void 0;
 const dataModel_1 = require("./model/dataModel");
 const send_1 = require("./send");
 const amqplib_1 = __importDefault(require("amqplib"));
 const mongoose = require('mongoose');
 const connection2 = mongoose.createConnection('mongodb://localhost:27017/');
-exports.model = connection2.model('dataModel', dataModel_1.schema);
+exports.model = connection2.model('wao10', dataModel_1.schema);
 var channel, connection;
 connectQueue(); // call connectQueue function
 async function connectQueue() {
@@ -39,8 +39,3 @@ const endpointPost = async (req, res) => {
     res.send("Message Sent");
 };
 exports.endpointPost = endpointPost;
-const endpointGetID = async (req, res) => {
-    const { uid } = req.params;
-    res.json(await exports.model.findById(uid).lean());
-};
-exports.endpointGetID = endpointGetID;

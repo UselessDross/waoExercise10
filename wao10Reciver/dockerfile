@@ -1,0 +1,27 @@
+
+FROM node:20 as build
+WORKDIR /app
+COPY package*.json .
+RUN npm install
+COPY . . 
+
+
+
+# production stage
+
+FROM node:20-slim as production_stage
+WORKDIR /app
+COPY --from=build /app/package*.json ./
+
+RUN npm ci --production
+#COPY --from=build /app/assets ./assets
+COPY --from=build /app/dist ./dist
+
+
+ARG PORT_ARG=4002
+ENV PORT=${PORT_ARG}
+
+EXPOSE ${PORT}
+
+ENTRYPOINT [ "npm" ]
+CMD ["start"]

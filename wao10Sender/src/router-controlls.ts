@@ -7,9 +7,9 @@ import * as order       from './endpoints'
 const router = Router()
 
 
-router.get(''        ,         order.endpointlist  );
-router.post(''       ,         order.endpointPost  );   
-router.get('/:uid'   , json(), order.endpointGetID );
+router.get( '', order.endpointlist  );
+router.post('', order.endpointPost  );   
+
 
 
 export { router };

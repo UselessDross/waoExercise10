@@ -2,11 +2,10 @@
 //                                                                L---------<#>[  dataModel  ]
 
 
-import * as order       from './endpoints.js'
+import * as order       from './endpoints'
 import { Router, json } from 'express';
 const router = Router()
 
-router.get(''     ,         order.endpointlist  );
-router.get('/:uid', json(), order.endpointGetID );
+router.get('', order.endpointGet );
 
 export { router };

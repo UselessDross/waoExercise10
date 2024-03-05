@@ -26,9 +26,8 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.router = void 0;
-const order = __importStar(require("./endpoints.js"));
+const order = __importStar(require("./endpoints"));
 const express_1 = require("express");
 const router = (0, express_1.Router)();
 exports.router = router;
-router.get('', order.endpointlist);
-router.get('/:uid', (0, express_1.json)(), order.endpointGetID);
+router.get('', order.endpointGet);

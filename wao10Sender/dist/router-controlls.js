@@ -32,4 +32,3 @@ const router = (0, express_1.Router)();
 exports.router = router;
 router.get('', order.endpointlist);
 router.post('', order.endpointPost);
-router.get('/:uid', (0, express_1.json)(), order.endpointGetID);

@@ -17,7 +17,7 @@ export const sendData = async (data:any, channel:Channel, connection:Connection)
     await channel.sendToQueue("test-queue", Buffer.from(JSON.stringify(data)));
         
     // close the channel and connection
-    await channel.close();
-    await connection.close();
+/*     await channel.close();
+    await connection.close(); */
 }
 
